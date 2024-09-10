@@ -23,7 +23,7 @@ torch.manual_seed(manualSeed)
 torch.use_deterministic_algorithms(True)  # Needed for reproducible results
 
 # Root directory for dataset
-dataroot = "/home/groups/comp3710/keras_png_slices_train"
+dataroot = "/home/groups/comp3710/OASIS/"
 
 # Number of workers for dataloader
 workers = 2
@@ -31,17 +31,17 @@ workers = 2
 batch_size = 128
 # Spatial size of training images. All images will be resized to this
 #   size using a transformer.
-image_size = 256
+image_size = 64
 # Number of channels in the training images. For color images this is 3
-nc = 3
+nc = 1
 # Size of z latent vector (i.e. size of generator input)
 nz = 100
 # Size of feature maps in generator
-ngf = 256
+ngf = 64
 # Size of feature maps in discriminator
-ndf = 256
+ndf = 64
 # Number of training epochs
-num_epochs = 5
+num_epochs = 10
 # Learning rate for optimizers
 lr = 0.0002
 # Beta1 hyperparameter for Adam optimizers
@@ -168,7 +168,6 @@ if (device.type == 'cuda') and (ngpu > 1):
     netD = nn.DataParallel(netD, list(range(ngpu)))
 
 # Apply the ``weights_init`` function to randomly initialize all weights
-# like this: ``to mean=0, stdev=0.2``.
 netD.apply(weights_init)
 
 # Print the model
@@ -273,8 +272,8 @@ for epoch in range(num_epochs):
 
 plt.figure(figsize=(10,5))
 plt.title("Generator and Discriminator Loss During Training")
-plt.plot(G_losses,label="G")
-plt.plot(D_losses,label="D")
+plt.plot(G_losses,label="Generator")
+plt.plot(D_losses,label="Discriminant")
 plt.xlabel("iterations")
 plt.ylabel("Loss")
 plt.legend()
@@ -284,6 +283,8 @@ fig = plt.figure(figsize=(8,8))
 plt.axis("off")
 ims = [[plt.imshow(np.transpose(i,(1,2,0)), animated=True)] for i in img_list]
 ani = animation.ArtistAnimation(fig, ims, interval=1000, repeat_delay=1000, blit=True)
+
+plt.savefig('loss.jpg')
 
 HTML(ani.to_jshtml())
 
@@ -303,3 +304,5 @@ plt.axis("off")
 plt.title("Fake Images")
 plt.imshow(np.transpose(img_list[-1],(1,2,0)))
 plt.show()
+
+plt.savefig('brains.jpg')
