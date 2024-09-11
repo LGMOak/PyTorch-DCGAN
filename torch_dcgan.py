@@ -1,10 +1,6 @@
-# First implementation of DCGAN following on CelebA dataset following PyTorch tutorial
-import argparse
-import os
+# implementation of DCGAN on OASIS data
 import random
-import torch
 import torch.nn as nn
-import torch.nn.parallel
 import torch.optim as optim
 import torch.utils.data
 import torchvision.datasets
@@ -13,7 +9,6 @@ import torchvision.utils as vutils
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from IPython.display import HTML
 
 # Set random seed for reproducibility
 manualSeed = random.randint(1, 10000)  # use if you want new results
@@ -41,7 +36,7 @@ ngf = 64
 # Size of feature maps in discriminator
 ndf = 64
 # Number of training epochs
-num_epochs = 10
+num_epochs = 35
 # Learning rate for optimizers
 lr = 0.0002
 # Beta1 hyperparameter for Adam optimizers
@@ -285,8 +280,6 @@ ims = [[plt.imshow(np.transpose(i,(1,2,0)), animated=True)] for i in img_list]
 ani = animation.ArtistAnimation(fig, ims, interval=1000, repeat_delay=1000, blit=True)
 
 plt.savefig('loss.jpg')
-
-HTML(ani.to_jshtml())
 
 # Grab a batch of real images from the dataloader
 real_batch = next(iter(dataloader))
