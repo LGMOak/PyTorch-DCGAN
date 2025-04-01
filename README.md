@@ -24,7 +24,7 @@ DCGANs extend this concept using convolutional layers to improve the quality of 
 
 ## Installation & Setup
 ### Prerequisites:
-- Python 3.7+
+- Python 3.12+
 - PyTorch
 - Torchvision
 - Matplotlib
