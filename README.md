@@ -36,10 +36,15 @@ Run the training script:
 python torch_dcgan.py
 ```
 
+![img.png](train.jpg)
+
 ## Results
 After training, the model will generate synthetic images. The results are saved as:
 - `brains.jpg`: Comparison of real vs. generated images.
 - `loss.jpg`: Training loss curves for generator and discriminator.
+
+![img.png](brains.jpg)
+![img.png](loss.jpg)
 
 ## References
 - Radford, A., Metz, L., & Chintala, S. (2015). **Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks**.
