@@ -18,7 +18,7 @@ torch.manual_seed(manualSeed)
 torch.use_deterministic_algorithms(True)  # Needed for reproducible results
 
 # Root directory for dataset
-dataroot = "/home/groups/comp3710/OASIS/"
+dataroot = ""
 
 # Number of workers for dataloader
 workers = 2
